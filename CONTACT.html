@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Elegant Wedding Planning</title>
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h2>EVENTRRA</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="CONTACT.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Let's Create Your Dream Wedding</h1>
+            <p>Get in touch with our expert wedding planners to start planning your perfect day</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="weddingDate">Proposed Wedding Date</label>
+                            <input type="date" id="weddingDate" name="weddingDate">
+                        </div>
+                        
+                        
+                        <div class="form-group">
+                            <label for="serviceType">Service Interested In</label>
+                            <select id="serviceType" name="serviceType">
+                                <option value="">Select service</option>
+                                <option value="full-planning">Full Wedding Planning</option>
+                                <option value="partial-planning">Partial Planning</option>
+                                <option value="day-coordination">Day-of Coordination</option>
+                                <option value="consultation">Consultation Only</option>
+                                <option value="Design & Styling">Design & Styling</option>
+                                <option value="Destination Weddings">Destination Weddings</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="under-10k">Under 10,000/-</option>
+                                <option value="10k-25k">10,000/- - 25,000/-</option>
+                                <option value="25k-50k">25,000/- - 40,000/-</option>
+                                <option value="50k+">50,000+</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell us about your vision for the perfect wedding day..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>Get In Touch</h3>
+                        <p>We'd love to hear about your wedding vision and help bring it to life!</p>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p> (91+) 85369 92179</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>eventrraofficial@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Office</h4>
+                                <p>Bargachia , Howrah , west Bengal ,<br> India 711404 Howrah, <br> West Bengal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Business Hours</h4>
+                                <p>Monday - Friday: 9AM - 7PM<br>Saturday: 9AM - 7PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Info -->
+                    <div class="team-card">
+                        <h3>Our Lead Planners</h3>
+                        <div class="planner">
+                            <h4>Sarah Johnson</h4>
+                            <p>Senior Wedding Planner</p>
+                            <span>sarah@elegantweddings.com</span>
+                        </div>
+                        <div class="planner">
+                            <h4>Michael Chen</h4>
+                            <p>Event Coordinator</p>
+                            <span>michael@elegantweddings.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>How far in advance should we book?</h4>
+                    <p>We recommend booking 9-12 months in advance for full planning services, but we can accommodate shorter timelines depending on availability.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What areas do you serve?</h4>
+                    <p>We serve the entire tri-state area and are available for destination weddings worldwide.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do you offer virtual consultations?</h4>
+                    <p>Yes! We offer comprehensive virtual consultations for couples who prefer to meet online.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What is your pricing structure?</h4>
+                    <p>We offer customized packages starting at $2,500. Pricing depends on services required and wedding complexity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2022 Elegant Wedding Planning. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="contact.js"></script>
+</body>
+</html>
