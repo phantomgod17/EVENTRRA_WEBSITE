@@ -1,4 +1,4 @@
- :root {
+:root {
             --primary-color: #8b7355;
             --secondary-color: #333333;
             --accent-color: #d4af37;
@@ -11,6 +11,40 @@
             --booked: #f44336;
             --today: #2196f3;
         }
+        .hero, .portfolio-item .image-highlighted {
+  will-change: background-image, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  animation-timing-function: ease-in-out;
+}
+
+* {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  image-rendering: auto;
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+/* reduce heavy shadows on mobile */
+@media (max-width: 768px) {
+  .portfolio-item, .booking-form, .testimonial-content {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+}
+
+/* Prevent reflow lag when scrolling */
+body {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Existing styles remain same below ↓ */
+
 
         * {
             margin: 0;
@@ -808,4 +842,49 @@
                 height: 30px;
             }
         }
+        /* ---- Calendar Mobile Fix (363px screen width) ---- */
+@media (max-width: 400px) {
+  .calendar-container {
+    width: 100%;
+    padding: 1rem 0.5rem;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
+    gap: 3px;
+  }
+
+  .calendar-day,
+  .calendar-date {
+    font-size: 0.7rem;
+    padding: 6px 0;
+    min-height: 32px;
+  }
+
+  .calendar-header h3 {
+    font-size: 1rem;
+  }
+
+  .availability-legend {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .booking-form {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .selected-date {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
     
