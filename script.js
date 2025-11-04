@@ -1,3 +1,28 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    }, { passive: true });
+  }
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (hamburger) hamburger.classList.remove('active');
+      if (navMenu) navMenu.classList.remove('active');
+    }, { passive: true });
+  });
+
+  // Smooth scroll performance tweak
+  window.addEventListener('touchmove', () => {}, { passive: true });
+
+  /* Keep rest of your existing JS code exactly the same */
+});
+
+
 // Mobile Navigation Toggle
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger');
