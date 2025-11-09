@@ -1,4 +1,4 @@
-// JavaScript Document - Final Optimized Version with Auto Slide + Swipe + Mobile Lag Fix
+// Final Optimized Version - Smooth Mobile + Auto Slide + Preloader + Swipe Support
 
 const nextBtn = document.querySelector('.next');
 const prevBtn = document.querySelector('.prev');
@@ -9,16 +9,19 @@ const loader = document.getElementById("pre");
 
 let isAnimating = false;
 let autoSlideInterval;
+let autoSlideDelay = 5000; // 5 seconds
 
-// Hide preloader smoothly
+// 🌀 Preloader fade-out effect
 window.addEventListener("load", () => {
   if (loader) {
     loader.style.opacity = "0";
-    setTimeout(() => (loader.style.display = "none"), 400);
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 800);
   }
 });
 
-// Move slider smoothly
+// ⚡ Function to move slides
 function moveSlider(direction) {
   if (isAnimating) return;
   isAnimating = true;
@@ -48,28 +51,31 @@ function moveSlider(direction) {
   });
 }
 
-// Auto slide function
+// ▶️ Auto-slide control
 function startAutoSlide() {
   stopAutoSlide();
-  autoSlideInterval = setInterval(() => moveSlider('next'), 5000);
+  autoSlideInterval = setInterval(() => moveSlider('next'), autoSlideDelay);
 }
 
 function stopAutoSlide() {
   if (autoSlideInterval) clearInterval(autoSlideInterval);
 }
 
-// Button clicks
+// ⏯️ Pause on hover or touch
+slider.addEventListener("mouseenter", stopAutoSlide);
+slider.addEventListener("mouseleave", startAutoSlide);
+
+// 🎯 Button events
 nextBtn.addEventListener('click', () => {
   moveSlider('next');
   startAutoSlide();
 });
-
 prevBtn.addEventListener('click', () => {
   moveSlider('prev');
   startAutoSlide();
 });
 
-// Swipe gesture
+// 🤚 Swipe gesture support for mobile
 let startX = 0;
 let endX = 0;
 
@@ -103,9 +109,13 @@ slider.addEventListener(
   { passive: true }
 );
 
-// Optimize scroll & touch responsiveness
+// 🌙 Optimize scroll & touch responsiveness
 window.addEventListener('scroll', () => {}, { passive: true });
 window.addEventListener('touchstart', () => {}, { passive: true });
 
+// 🚀 Start autoplay when ready
+startAutoSlide();
+
 // Start autoplay on load
 startAutoSlide();
+
