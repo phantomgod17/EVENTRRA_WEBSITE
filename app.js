@@ -1,50 +1,111 @@
-// JavaScript Document
-let nextBtn = document.querySelector('.next')
-let prevBtn = document.querySelector('.prev')
+// JavaScript Document - Final Optimized Version with Auto Slide + Swipe + Mobile Lag Fix
 
-let slider = document.querySelector('.slider')
-let sliderList = slider.querySelector('.slider .list')
-let thumbnail = document.querySelector('.slider .thumbnail')
-let thumbnailItems = thumbnail.querySelectorAll('.item')
+const nextBtn = document.querySelector('.next');
+const prevBtn = document.querySelector('.prev');
+const slider = document.querySelector('.slider');
+const sliderList = slider.querySelector('.slider .list');
+const thumbnail = slider.querySelector('.slider .thumbnail');
+const loader = document.getElementById("pre");
 
-thumbnail.appendChild(thumbnailItems[0])
+let isAnimating = false;
+let autoSlideInterval;
 
-// Function for next button 
-nextBtn.onclick = function() {
-    moveSlider('next')
-}
+// Hide preloader smoothly
+window.addEventListener("load", () => {
+  if (loader) {
+    loader.style.opacity = "0";
+    setTimeout(() => (loader.style.display = "none"), 400);
+  }
+});
 
-
-// Function for prev button 
-prevBtn.onclick = function() {
-    moveSlider('prev')
-}
-
-
+// Move slider smoothly
 function moveSlider(direction) {
-    let sliderItems = sliderList.querySelectorAll('.item')
-    let thumbnailItems = document.querySelectorAll('.thumbnail .item')
-    
-    if(direction === 'next'){
-        sliderList.appendChild(sliderItems[0])
-        thumbnail.appendChild(thumbnailItems[0])
-        slider.classList.add('next')
+  if (isAnimating) return;
+  isAnimating = true;
+
+  const sliderItems = sliderList.querySelectorAll('.item');
+  const thumbnailItems = document.querySelectorAll('.thumbnail .item');
+
+  requestAnimationFrame(() => {
+    if (direction === 'next') {
+      sliderList.appendChild(sliderItems[0]);
+      thumbnail.appendChild(thumbnailItems[0]);
+      slider.classList.add('next');
     } else {
-        sliderList.prepend(sliderItems[sliderItems.length - 1])
-        thumbnail.prepend(thumbnailItems[thumbnailItems.length - 1])
-        slider.classList.add('prev')
+      sliderList.prepend(sliderItems[sliderItems.length - 1]);
+      thumbnail.prepend(thumbnailItems[thumbnailItems.length - 1]);
+      slider.classList.add('prev');
     }
 
-
-    slider.addEventListener('animationend', function() {
-        if(direction === 'next'){
-            slider.classList.remove('next')
-        } else {
-            slider.classList.remove('prev')
-        }
-    }, {once: true}) // Remove the event listener after it's triggered once
+    slider.addEventListener(
+      'animationend',
+      () => {
+        slider.classList.remove('next', 'prev');
+        isAnimating = false;
+      },
+      { once: true }
+    );
+  });
 }
-let loader = document.getElementById("pre");
-		window.addEventListener("load", function(){
-		loader.style.display ="none";	
-		})
+
+// Auto slide function
+function startAutoSlide() {
+  stopAutoSlide();
+  autoSlideInterval = setInterval(() => moveSlider('next'), 5000);
+}
+
+function stopAutoSlide() {
+  if (autoSlideInterval) clearInterval(autoSlideInterval);
+}
+
+// Button clicks
+nextBtn.addEventListener('click', () => {
+  moveSlider('next');
+  startAutoSlide();
+});
+
+prevBtn.addEventListener('click', () => {
+  moveSlider('prev');
+  startAutoSlide();
+});
+
+// Swipe gesture
+let startX = 0;
+let endX = 0;
+
+slider.addEventListener(
+  'touchstart',
+  (e) => {
+    startX = e.touches[0].clientX;
+    stopAutoSlide();
+  },
+  { passive: true }
+);
+
+slider.addEventListener(
+  'touchmove',
+  (e) => {
+    endX = e.touches[0].clientX;
+  },
+  { passive: true }
+);
+
+slider.addEventListener(
+  'touchend',
+  () => {
+    const diff = endX - startX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) moveSlider('prev');
+      else moveSlider('next');
+    }
+    startAutoSlide();
+  },
+  { passive: true }
+);
+
+// Optimize scroll & touch responsiveness
+window.addEventListener('scroll', () => {}, { passive: true });
+window.addEventListener('touchstart', () => {}, { passive: true });
+
+// Start autoplay on load
+startAutoSlide();
